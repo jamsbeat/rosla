@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConsultationBooked;
+use App\Models\User;
 
 class ConsultationBooking extends Component
 {
@@ -20,15 +21,14 @@ class ConsultationBooking extends Component
     public $totalSteps = 3;
     public $componentId = 'consultation';
 
+    public $user;
+
     public $services;
     public $selectedService = null;
 
     public $scheduledAtInput = null;
     public $scheduledAt = null;
 
-    public $name = '';
-    public $email = '';
-    public $phone = '';
     public $address = '';
     public $info = '';
 
@@ -86,22 +86,15 @@ class ConsultationBooking extends Component
                 }
             ],
 
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
             'address' => 'required|string|max:255',
             'info' => 'nullable|string|max:500',
         ];
     }
 
-    protected $messages = [
-        'email.required' => 'The email address cannot be empty.',
-        'email.email' => 'The email address must be a valid email.',
-    ];
-
     public function mount()
     {
         $this->services = Service::all();
+        $this->user = Auth::user();
     }
 
     public function render()
@@ -148,13 +141,10 @@ class ConsultationBooking extends Component
         } elseif ($step === 2) {
             $this->validateOnly('scheduledAtInput');
         } elseif ($step === 3) {
-             $this->validate([
-                'name' => $this->rules()['name'],
-                'email' => $this->rules()['email'],
-                'phone' => $this->rules()['phone'],
-                'address' => $this->rules()['address'],
-                'info' => $this->rules()['info'],
-             ]);
+            $this->validateOnly('address');
+            $this->validateOnly('info');
+        } else {
+            throw new \InvalidArgumentException("Invalid step: {$step}");
         }
     }
 
@@ -164,31 +154,22 @@ class ConsultationBooking extends Component
         $validatedData = $this->validate([
             'selectedService' => $this->rules()['selectedService'],
             'scheduledAtInput' => $this->rules()['scheduledAtInput'],
-            'name' => $this->rules()['name'],
-            'email' => $this->rules()['email'],
-            'phone' => $this->rules()['phone'],
             'address' => $this->rules()['address'],
             'info' => $this->rules()['info'],
         ]);
 
         DB::transaction(function () use ($validatedData) {
-            $userDetail = UserDetail::create([
-                'user_id' => Auth::user()->id ?? null,
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'phone' => $validatedData['phone'],
-                'address' => $validatedData['address'],
-                'info' => $validatedData['info'] ?? null,
-            ]);
 
             $consultation = Consultation::create([
+                'user_id' => Auth::user()->id,
                 'service_id' => $validatedData['selectedService'],
-                'user_detail_id' => $userDetail->id,
+                'address' => $validatedData['address'],
+                'info' => $validatedData['info'] ?? null,
                 'scheduled_at' => $this->scheduledAt,
             ]);
 
-            Mail::to($userDetail)->send(
-                new ConsultationBooked($userDetail)
+            Mail::to($this->user)->queue(
+                new ConsultationBooked($this->user)
             );
 
             sleep(1);

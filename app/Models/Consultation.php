@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\User;
 
 class Consultation extends Model
 {
@@ -11,9 +14,11 @@ class Consultation extends Model
 
     protected $fillable = [
         'service_id',
-        'user_detail_id',
+        'user_id',
         'scheduled_at', // Add this
         // other fillable fields...
+        'address',
+        'info',
     ];
 
     // Recommended: Cast to Carbon instance
@@ -26,7 +31,7 @@ class Consultation extends Model
         return $this->belongsTo(Service::class);
     }
 
-    public function userDetail() {
-        return $this->belongsTo(UserDetail::class);
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

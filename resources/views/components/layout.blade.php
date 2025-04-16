@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Rosla</title>
+    <link rel="icon" href="https://placehold.co/600x400/21C55D/FFF" type="image/x-icon">
+
+    {{-- Tailwind --}}
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     {{-- Flat Pickr --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -18,6 +22,8 @@
 
     @vite(['resources/css/app.css' , 'resources/js/app.js'])
 
+    @livewireStyles
+
 </head>
 <body>
     <nav>
@@ -27,6 +33,8 @@
     <section class="px-[210px]">
         {{ $slot }}
     </section>
+
+    @livewireScripts
 
 </body>
 </html>

@@ -3,13 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Livewire\AdminPage;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/consultations', App\Livewire\ConsultationBooking::class)->name('consultations');
+    Route::get('/profile', App\Livewire\ProfilePage::class)->name('profile');
+
+    Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
+});
+
 Route::get('/carbon-calculator', App\Livewire\CarbonCalculator::class)->name('carbon-calculator');
-Route::get('/consultations', App\Livewire\ConsultationBooking::class)->name('consultations');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -19,7 +26,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [SessionController::class, 'store']);
 });
 
-Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/admin', AdminPage::class)->name('admin');
+});
 
 
 Route::get('/about', function () {

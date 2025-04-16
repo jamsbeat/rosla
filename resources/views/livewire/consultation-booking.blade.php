@@ -107,24 +107,6 @@
             <h3 class="text-lg font-semibold text-gray-700 mb-4">Your Details</h3>
 
             <div class="flex flex-col gap-2">
-                <label for="name" class="text-sm font-medium text-gray-700">Name <span class="text-red-500">*</span></label>
-                <input wire:model="name" type="text" id="name" class="border border-primary rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary @error('name') border-red-500 @enderror" placeholder="Enter your full name"/>
-                @error('name') <span class="text-red-500 text-xs italic mt-1">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="flex flex-col gap-2">
-                <label for="email" class="text-sm font-medium text-gray-700">Email <span class="text-red-500">*</span></label>
-                <input wire:model="email" type="email" id="email" class="border border-primary rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary @error('email') border-red-500 @enderror" placeholder="your@email.com"/>
-                @error('email') <span class="text-red-500 text-xs italic mt-1">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="flex flex-col gap-2">
-                <label for="phone" class="text-sm font-medium text-gray-700">Phone <span class="text-red-500">*</span></label>
-                <input wire:model="phone" type="tel" id="phone" class="border border-primary rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary @error('phone') border-red-500 @enderror" placeholder="Your contact number"/>
-                @error('phone') <span class="text-red-500 text-xs italic mt-1">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="flex flex-col gap-2">
                 <label for="address" class="text-sm font-medium text-gray-700">Address <span class="text-red-500">*</span></label>
                 <input wire:model="address" type="text" id="address" class="border border-primary rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary @error('address') border-red-500 @enderror" placeholder="Your street address"/>
                 @error('address') <span class="text-red-500 text-xs italic mt-1">{{ $message }}</span> @enderror
@@ -149,7 +131,25 @@
 
 
     </div>
+
+    <style>
+        .flatpickr-calendar {
+            background: #ffffff !important;
+        }
+
+        .flatpickr-day.selected,
+        .flatpickr-day.selected:hover {
+            background: #1DA44D !important;
+            border-color: #1DA44D !important; /* Fixed missing value */
+        }
+
+        .flatpickr-day:hover {
+            background: #D3D3D3 !important; /* Hover state - Light indigo */
+            color: #ffffff !important; /* Hover state - White */
+        }
+    </style>
 </div>
+
 
 @script
 <script>
@@ -162,7 +162,7 @@
                 confirmButton: 'bg-primary hover:bg-secondary text-white font-medium py-2 px-4 rounded-lg transition-all duration-100 focus:outline-none hover:ring-2 focus:ring-secondary focus:ring-offset-2'
             },
             buttonsStyling: false,
-            footer: '@auth<a href="/bookings">View Consultations</a>@endauth'
+            footer: '@auth<a href="/profile">View Consultations</a>@endauth'
           });
     });
 

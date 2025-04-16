@@ -17,9 +17,11 @@ return new class extends Migration
     {
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('service_id')->constrained('services');
-            $table->unsignedInteger('user_detail_id')->constrained('user_details');
-            $table->dateTime('scheduled_at')->nullable()->after('user_detail_id')->unique();
+            $table->foreignId('service_id')->constrained('services');
+            $table->foreignId('user_id')->nullable()->constrained('users');
+            $table->string('address')->constrained('addresses')->nullable();
+            $table->string('info')->nullable()->constrained('info');
+            $table->dateTime('scheduled_at')->nullable()->unique();
             $table->timestamps();
         });
     }

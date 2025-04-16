@@ -14,5 +14,5 @@ class Service extends Model
     {
         return $this->hasMany(Consultation::class);
     }
-
+    
 }
