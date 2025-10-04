@@ -1,7 +1,7 @@
 <div class="mt-6 sm:mt-8 relative">
     <h3 class="text-white font-medium mb-2 sm:mb-4 text-sm sm:text-base">Why Choose Us?</h3>
     <h1 class="text-3xl sm:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-        Make your customers happy by giving services.
+        Rosla Energy
     </h1>
 
     <p class="text-white mb-4 sm:mb-6 text-base sm:text-xl font-semibold leading-relaxed">
