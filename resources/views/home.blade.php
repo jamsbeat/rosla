@@ -6,14 +6,14 @@
                  alt="Hero Image"
                  class="absolute right-0 sm:right-4 -top-2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] opacity-30 sm:opacity-100">
         </div>
-        <div class="mb-12 sm:mb-[72px] sm:mt-24 relative px-4 sm:px-0">
+        <div class="mb-12 sm:mb-[72px] relative px-4 sm:px-0">
             <div class="w-full sm:w-1/2">
                 <x-home.hero-section />
             </div>
         </div>
 
         <!-- Stats Section - NEW -->
-        <div class="relative z-10 -mt-8 sm:mt-56 px-4">
+        <div class="relative z-10 -mt-8 sm:mt-42 px-4">
             <x-home.stats />
         </div>
 
