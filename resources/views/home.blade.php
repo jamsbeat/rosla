@@ -9,7 +9,7 @@
                          class="absolute right-0 top-0 w-[400px] h-[400px] lg:w-[700px] lg:h-[700px] object-contain">
                 </div>
 
-                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 xl:px-32 py-24 lg:py-32">
+                <div class="relative max-w-7xl mx-auto px-6 lg:px-20 xl:px-32 pt-12 pb-24 lg:pb-32 lg:pt-12">
                     <div class="lg:w-2/3">
                         <x-home.hero-section />
                     </div>
@@ -64,12 +64,12 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
                             </svg>
                         </div>
-                        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                        <p class="text-gray-600 text-lg max-w-2xl md:mx-auto mx-1">
                             Choose the service that best fits your energy needs
                         </p>
                     </div>
 
-                    <div class="max-w-2xl mx-auto">
+                    <div class="max-w-2xl md:mx-auto mx-2">
                         <x-home.services />
                     </div>
                 </div>

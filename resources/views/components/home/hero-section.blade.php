@@ -1,5 +1,5 @@
-<div class="space-y-8">
-    <div class="space-y-3">
+<div class="space-y-6">
+    <div class="space-y-2">
         <span class="inline-block text-white/80 font-semibold text-sm lg:text-base uppercase tracking-wider">
             Why Choose?
         </span>
