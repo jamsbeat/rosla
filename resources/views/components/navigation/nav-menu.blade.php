@@ -6,15 +6,17 @@ x-init="window.addEventListener('resize', () => { isDesktop = window.innerWidth 
 class="bg-white shadow relative z-50" wire:ignore>
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
-            <a href="/">
-                <x-logo />
-            </a>
-            <!-- Desktop nav links - controlled by Alpine -->
-            <div x-show="isDesktop" class="flex gap-x-1 ml-4">
-                <x-navigation.nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">Home</x-navigation.nav-link>
-                <x-navigation.nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">About</x-navigation.nav-link>
-                <x-navigation.nav-link href="{{ route('consultations') }}" :active="request()->routeIs('consultations')">Consultations</x-navigation.nav-link>
-                <x-navigation.nav-link href="{{ route('carbon-calculator') }}" :active="request()->routeIs('carbon-calculator')">Carbon</x-navigation.nav-link>
+            <div class="flex">
+                <a href="/" class="flex justify-center items-center">
+                    <x-logo />
+                </a>
+                <!-- Desktop nav links - controlled by Alpine -->
+                <div x-show="isDesktop" class="flex justify-center items-center h-16 gap-x-1">
+                    <x-navigation.nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">Home</x-navigation.nav-link>
+                    <x-navigation.nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">About</x-navigation.nav-link>
+                    <x-navigation.nav-link href="{{ route('consultations') }}" :active="request()->routeIs('consultations')">Consultations</x-navigation.nav-link>
+                    <x-navigation.nav-link href="{{ route('carbon-calculator') }}" :active="request()->routeIs('carbon-calculator')">Carbon</x-navigation.nav-link>
+                </div>
             </div>
 
             <!-- Right Nav - Desktop Only -->
@@ -141,3 +143,5 @@ class="bg-white shadow relative z-50" wire:ignore>
       </aside>
     </div>
   </nav>
+
+  <!-- safelist: space-x-8 sm:ml-10 sm:-my-px justify-center justify-between items-center -->
