@@ -1,4 +1,4 @@
-<div>
+<div class="p-4">
     <input
         wire:model.live="search"
         type="search"

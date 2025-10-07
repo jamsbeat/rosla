@@ -15,6 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        User::create([
+            'name'=> 'root',
+            'is_admin'=> true,
+            'email'=>'root@gmail.com',
+            'phone'=>'07787324255',
+            'password'=>'root',
+
+        ]);
+
         Service::create([
             'name' => 'Solar Panel Installation',
             'description' => 'Consultation for residential or commercial solar panel systems',
