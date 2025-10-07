@@ -9,7 +9,7 @@
                          class="absolute right-0 top-0 w-[400px] h-[400px] lg:w-[700px] lg:h-[700px] object-contain">
                 </div>
 
-                <div class="relative max-w-7xl mx-auto px-6 lg:px-20 xl:px-32 pt-12 pb-24 lg:pb-32 lg:pt-12">
+                <div class="relative max-w-7xl mx-auto px-6 lg:px-20 xl:px-32 pt-12 pb-32 lg:pt-12">
                     <div class="lg:w-2/3">
                         <x-home.hero-section />
                     </div>
